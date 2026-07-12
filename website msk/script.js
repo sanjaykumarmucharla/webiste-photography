@@ -24,8 +24,6 @@ const calendarMonth = document.querySelector('#calendar-month');
 const selectedDateLabel = document.querySelector('#selected-date');
 const timeSlots = document.querySelectorAll('.time-slots button');
 const bookingSummary = document.querySelector('#booking-summary strong');
-const continueButton = document.querySelector('#book-continue');
-const eventDateInput = document.querySelector('#event-date');
 const monthBack = document.querySelector('#previous-month');
 const monthNext = document.querySelector('#next-month');
 
@@ -57,7 +55,6 @@ function calendarKey(date) {
 function updateBookingSummary() {
   const hasSelection = selectedDay && selectedTime;
   bookingSummary.textContent = hasSelection ? `${selectedDateFormat.format(selectedDay)} · ${selectedTime}` : '—';
-  continueButton.disabled = !hasSelection;
 }
 
 function resetTimeSelection() {
@@ -138,30 +135,8 @@ timeSlots.forEach((slot) => slot.addEventListener('click', () => {
   updateBookingSummary();
 }));
 
-continueButton?.addEventListener('click', () => {
-  if (!selectedDay || !selectedTime) return;
-  eventDateInput.value = `${selectedDateFormat.format(selectedDay)} · Intro at ${selectedTime}`;
-  document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  window.setTimeout(() => eventDateInput.focus(), 550);
-});
-
 renderCalendar();
 updateBookingSummary();
-
-const form = document.querySelector('#contact-form');
-const formSuccess = document.querySelector('#form-success');
-
-form?.addEventListener('submit', (event) => {
-  event.preventDefault();
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
-
-  formSuccess.hidden = false;
-  form.querySelector('.submit-button').textContent = 'Inquiry sent · thank you';
-  form.querySelector('.submit-button').disabled = true;
-});
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealItems = document.querySelectorAll('.reveal');

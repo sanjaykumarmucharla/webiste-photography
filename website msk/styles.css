@@ -360,7 +360,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .booking-summary { display: grid; gap: 0.35rem; margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--dark-line); }
 .booking-summary span { color: #77776e; font: 0.52rem var(--mono); letter-spacing: 0.065em; text-transform: uppercase; }
 .booking-summary strong { font-size: 0.75rem; font-weight: 500; }
-.book-continue { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; margin-top: 1rem; padding: 0.78rem 0; color: var(--paper); background: var(--ink); border: 1px solid var(--ink); font: 0.57rem var(--mono); letter-spacing: 0.04em; text-transform: uppercase; text-align: center; transition: color 160ms ease, background 160ms ease; }
+.book-continue { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; margin-top: 1rem; padding: 0.78rem 0; color: var(--paper); background: var(--ink); border: 1px solid var(--ink); font: 0.57rem var(--mono); letter-spacing: 0.04em; text-transform: uppercase; transition: color 160ms ease, background 160ms ease; }
 .book-continue span { padding-right: 0.7rem; font-size: 1rem; }
 .book-continue:hover { color: var(--ink); background: transparent; }
 
@@ -379,8 +379,16 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .contact-cta-label { margin: 0; color: var(--accent); font: 0.58rem var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
 .contact-cta h3 { margin: 0; color: var(--paper); font: 1.35rem/1.3 var(--serif); font-weight: 400; }
 
-.cta-highlight { color: var(--ink) !important; background: var(--accent) !important; border-color: var(--accent) !important; }
-.cta-highlight:hover { color: var(--paper) !important; background: transparent !important; border-color: var(--accent) !important; }
+.cta-highlight.header-cta,
+.cta-highlight.cta-button,
+.cta-highlight.outline-button,
+.cta-highlight.book-continue { color: var(--ink); background: var(--accent); border-color: var(--accent); }
+.cta-highlight.header-cta:hover,
+.cta-highlight.cta-button:hover,
+.cta-highlight.outline-button:hover,
+.cta-highlight.book-continue:hover { color: var(--paper); background: transparent; border-color: var(--accent); }
+.cta-highlight.text-link { color: var(--accent); }
+.cta-highlight.text-link:hover { color: var(--paper); }
 .cta-button { display: inline-flex; align-items: center; gap: 1rem; padding: 0.9rem 1.3rem; margin-top: 1.5rem; font: 0.6rem var(--mono); letter-spacing: 0.04em; text-transform: uppercase; transition: color 180ms ease, background 180ms ease; }
 .cta-button span:last-child { font-size: 1rem; }
 .cta-large { margin-top: 0; padding: 1rem 1.6rem; font-size: 0.65rem; }

@@ -151,16 +151,35 @@ updateBookingSummary();
 const form = document.querySelector('#contact-form');
 const formSuccess = document.querySelector('#form-success');
 
-form?.addEventListener('submit', (event) => {
+form?.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
   }
 
-  formSuccess.hidden = false;
-  form.querySelector('.submit-button').textContent = 'Inquiry sent · thank you';
-  form.querySelector('.submit-button').disabled = true;
+  const submitBtn = form.querySelector('.submit-button');
+  submitBtn.textContent = 'Sending…';
+  submitBtn.disabled = true;
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    });
+
+    if (response.ok) {
+      formSuccess.hidden = false;
+      submitBtn.textContent = 'Inquiry sent · thank you';
+    } else {
+      submitBtn.textContent = 'Send inquiry ↗';
+      submitBtn.disabled = false;
+    }
+  } catch (_) {
+    submitBtn.textContent = 'Send inquiry ↗';
+    submitBtn.disabled = false;
+  }
 });
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
